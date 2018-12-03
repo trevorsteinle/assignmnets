@@ -1,0 +1,56 @@
+* {
+    /*margin: 5%
+    */
+    box-sizing: border-box;
+
+
+}
+header {
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    text-align: center;
+    color: whitesmoke;
+    background-color: cadetblue
+}
+body {
+    margin: 6%;
+}
+.classifieds {
+    text-align: center;
+}
+
+.classifieds div {
+    border-style: solid;
+    height: 200px;
+    width: 200px;
+    margin-top: 5%;
+    margin-left: 3%;
+    margin-right: 1%;
+    margin-bottom: 4%;
+    display: inline-block;
+}
+img {
+    padding-top: 5px;
+    width: 150px;
+    height: 150px;
+
+}
+time {
+    text-align: left;
+}
+article p {
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    text-align: left;
+    text-indent: 5%;
+    display: table;
+    vertical-align: middle;
+}
+footer {
+    text-align: center;
+
+    background-color: cadetblue;
+    height: 34.953px;
+}
+.foot {
+    color: whitesmoke;
+    padding: 5px;
+}

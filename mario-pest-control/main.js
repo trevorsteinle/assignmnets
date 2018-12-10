@@ -14,6 +14,6 @@ document.total.addEventListener("submit", function(e) {
     document.total.appendChild(wrapper);  
     }
     var calc = goombacalc + bobombcalc + koopatroopacalc; 
-    wrapper.textContent = calc;
+    wrapper.textContent = calc + ' Coins';
     document.total.appendChild(wrapper);
 })

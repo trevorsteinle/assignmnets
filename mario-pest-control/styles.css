@@ -1,3 +1,5 @@
+/* my css needs improving to say the least..... I plan on updating it */
+/*                                                                    */
 * {
     font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
 }
@@ -24,23 +26,28 @@ body, html {
     width: 100%;
     height: auto;
 }
-
 div, img {
-    width: 200px;
+    width: 100px;
     height: auto;
-    position: 
+    position: relative;
 }
     label, input {
     display: block;
 }
+body, form {
+    padding-bottom: 20px;
+    /* align-content: center; */
+
+}
 #grandtotal {
+    width: 100%;
     display: block;
     padding-top: 20px;
 }
 footer {
 
-    /* position: fixed; */
-    padding-top: 10%;
+    position: fixed;
+    /* padding-top: ; */
     text-align: center;
     width: 100%;;
 }

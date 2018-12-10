@@ -1,0 +1,52 @@
+* {
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+
+body, html {
+    /* width: 100%; */
+    /* padding-bottom: -50%; */
+    /* background-color: teal; */
+}
+.thehead {
+    /* margin-left: auto; */
+    /* margin-right: auto; */
+    text-align: center;
+    /* background-image: url(img/Mario-banner.png); */
+    /* height: 100%; */
+    /* display: block; */
+    /* width: auto; */
+    /* background-repeat: no-repeat; */
+    /* background-size: contain; */
+    /* margin-bottom: 5%; */
+    margin-top: -2%;
+}
+.banner-img {
+    width: 100%;
+    height: auto;
+}
+
+div, img {
+    width: 200px;
+    height: auto;
+    position: 
+}
+    label, input {
+    display: block;
+}
+#grandtotal {
+    display: block;
+    padding-top: 20px;
+}
+footer {
+
+    /* position: fixed; */
+    padding-top: 10%;
+    text-align: center;
+    width: 100%;;
+}
+
+@media (max-width: 768px){
+#goomba, #bobomb, #koopatroopa {
+    width: 100px;
+}
+}

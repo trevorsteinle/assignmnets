@@ -15,10 +15,12 @@ var enemies = [
     hpBonus: '20'}
 ]
 console.log(enemies);
+var asdf = enemies[Math.floor(Math.random() * enemies.length)];
+console.log(asdf)
 
 var items = ['item1','item2','item3','item4','item5','item6'];
 
-function Player(){
+function Player(name){
     this.name = name;
     this.hp = 100;
     this.inventory = [];
@@ -27,12 +29,12 @@ function Player(){
 
 function enemyChance(){
     var chance = Math.floor(Math.random() * 5);
-    console.log(chance);
+    // console.log(chance);
     if (chance == 1) {
-        var asdf = enemies[Math.floor(Math.random() * enemies.length)];
+        var enemy = enemies[Math.floor(Math.random() * enemies.length)];
         // console.log(asdf)
         // return enemies[Math.floor(Math.random() * enemies.length)];
-        return asdf;
+        return enemy;
     }
 }
 enemyChance();
@@ -41,34 +43,34 @@ function enemyDamage() {
     return Math.floor(Math.random() * (30 - 10 + 1)) + 10;
 }
 
-function escapeChance() {
-    // var rando = Math.floor(Math.random()*2);
-    // console.log(rando);
+function escapeChance(player, choice, enemy) {
     var escape = Math.floor(Math.random()*2 + 1);
     if (choice === escape) {
         return "Phewee, you just made it out of there"
     } else {
-        Player.hp = player.hp - currentEnemy;
+        player.hp - enemy.damage;
     }
 }
-escapeChance()
+// escapeChance(player, 2, enemyChance)
 
 function dropChance(){
     return items[Math.floor(Math.random() * items.length)];
 }
 
-function fight(){
+function fight(enemy){
     enemy = enemyChance();
     console.log(enemy)
 }
-fight();
+// fight();
 // Functional/Business logic
 
-// var name = rs.question('Welcome Adventurer, Please tell us your name so we know the next ');
-// var player = new Player(); //player does not exist yet
+var name = rs.question('Welcome Adventurer, Please tell us your name so we know what to engrave on your tombstone: ');
+var player = new Player(name); //player does not exist yet
 
+var start = rs.keyIn('Press \'w\' to continue: ', {limit: "w"});
 // //promt user for name and info
 
-// while(true) {
-//     var isWalking = rs.keyInSelect(['w'], 'Press \'w\' to walk to continue');
-// }
+while(true) {
+    // var isWalking = rs.keyIn('Press \'w\' to walk to continue: ', {limit: "w"});
+    escapeChance()
+}

@@ -1,7 +1,7 @@
 const rs = require('readline-sync');
 
-var enemyTypes = ["Ryu","number2","number3","number4","number5","number6"];
-var items = ["item1","item2","item3","item4","item5","item6",];
+var enemyTypes = ["Ryu","Ken","Blanka","Guile","E. Honda","Vega"];
+var items = ["Hadouken","Shoryuken","Electric Thunder","Sonic Boom","Sumo Splash","Aerial Claw Slice",];
 
 function Enemy(){
     this.name = getRandomElement(enemyTypes),
@@ -15,7 +15,7 @@ function Player(name){
     this.name = name;
     this.hp = 100;
     this.inventory = [];
-    this.enmiesKilled = 0;
+    this.enemiesKilled = 0;
 }
 
 function getRandomElement (arr){
@@ -43,14 +43,15 @@ function fight(enemy){
 }
 
 function printStats (){
-    console.log('     Name: ' + player.name + '\n       HP: ' + player.hp + '\nInventory: ' + player.inventory + '\n    Kills: ' + player.enmiesKilled)
+    console.log('     Name: ' + player.name + '\n       HP: ' + player.hp + '\nInventory: ' + player.inventory + '\n    Kills: ' + player.enemiesKilled)
 }
 
-var name = rs.question('Welcome Adventurer, Please tell us your name so we know what to engrave on your tombstone: ');
+var name = rs.question('Welcome to Street Fighter RPG. Please state your name: ');
 
 //player does not exist yet
-var player = new Player(name); 
-
+var player = new Player(name);
+console.log('Here are your starting stats:')
+printStats()
 
 // Game loop
 while (true){
@@ -62,7 +63,7 @@ while (true){
         if (encounterEnemy) {
             //generate a random enemy
             var enemy = new Enemy();
-            console.log('you encountered a/n ' + enemy.name + '!')
+            console.log('you encountered ' + enemy.name + '!')
             var fight = rs.keyIn('Would you like to [F]ight or [R]un?', {limit: ['f','F','r','R']})
             if (fight === 'f' || fight === 'F'){
                  while (enemy.hp > 0 && player.hp > 0) {
@@ -70,18 +71,19 @@ while (true){
                     // console.log(enemy.hp)
                     enemyStartHp = enemy.hp;
                     enemy.hp -= getRandomPlayerDamage(); // change enemy.hp to reflect players random damage
-                    console.log('You attacked ' + enemy.name + ' for ' + (enemyStartHp - enemy.hp));
+                    console.log('You attacked ' + enemy.name + ' for ' + (enemyStartHp - enemy.hp) + ' HP\n' + enemy.name + ' still has ' + enemy.hp + ' HP');
                     if (enemy.hp > 0) {
+                        startingHp = player.hp;
                         player.hp += -enemy.damage;
+                        console.log('But, ' + enemy.name + ' hit you for ' + (startingHp - player.hp) + ' HP' )
                     } else {
-                        player.enmiesKilled++
+                        player.enemiesKilled++
                         if ((player.hp += enemy.hpReward) > 100){
                             player.hp = 100;
                         }
-                        player.hp += enemy.hpReward
                         player.inventory.push(enemy.item);
-                        console.log('+' + enemy.hpReward);
-                        console.log('You killed a(n) ' + enemy.name + '\nYour kill count is now ' + player.enmiesKilled +'\n And you aquired ' + enemy.item);
+                        console.log('+' + enemy.hpReward + ' HP');
+                        console.log('You killed ' + enemy.name + '!\nYour kill count is now ' + player.enemiesKilled +'\nAnd you aquired ' + enemy.item);
                     }
                 }
             //potentially damage the player and escape
@@ -89,7 +91,7 @@ while (true){
                 if (escapeChance() === 1){
                     console.log('Phew! You got away unscathed!')
                 } else {
-                    player.hp += -enemy.damage;
+                    player.hp -= enemy.damage;
                     console.log(enemy.name + ' managed to attack you before you could get away')
                     console.log(player.name + ' HP: ' + player.hp)
                 }
@@ -101,7 +103,7 @@ while (true){
 
 // check player hp to give correct end game message
 if (player.hp <= 0) {
-    console.log('You dead')
+    console.log('DEAD\nYou\'ve brought shame to your family')
     printStats()
     return false
 }}

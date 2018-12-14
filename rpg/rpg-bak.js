@@ -64,8 +64,13 @@ function enemyDamage() {
     return Math.floor(Math.random() * (30 - 10 + 1)) + 10;
 }
 
-function escapeChance() {
-    return Math.floor(Math.random()*2 + 1);
+function escapeChance(player,enemy) {
+    var escape = Math.floor(Math.random()*2 + 1);
+    if (choice === escape) {
+        return "Phewee, you just made it out of there"
+    } else {
+        player.hp - enemy.damage;
+    }
 }
 // escapeChance(player, 2, enemyChance)
 
@@ -133,26 +138,22 @@ while (true){
                     // player.hp += -enemy.damage;
                     // console.log('enemy hp ' + enemy.hp)
                     console.log(player)
-                // } {
+                } {
                 //     // return false 
                 // }
             // }else {
                 
             //     //potentially damage the player and escape
 
-                }
-            } else {
-                if (escapeChance() === 1){
-                    console.log('')
-                }
-            }
+            // }
+        }
     } else {
         console.log('So far the path is clear')
     }
 }
 
 // check player hp to give correct end game message
-if (player.hp <= 0) {
-    console.log('You dead')
-    return false
-}}
+// if (player.hp <= 0) {
+//     console.log('You dead')
+//     return false
+// }

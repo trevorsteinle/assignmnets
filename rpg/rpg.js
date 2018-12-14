@@ -1,15 +1,7 @@
 const rs = require('readline-sync');
 
-var enemyTypes = ["number1","number2","number3","number4","number5","number6"];
+var enemyTypes = ["Ryu","number2","number3","number4","number5","number6"];
 var items = ["item1","item2","item3","item4","item5","item6",];
-
-function getRandomElement (arr){
-    var index = Math.floor(Math.random() * enemyTypes.length);
-    return arr[index]
-}
-function getRandomPlayerDamage(){
-    return Math.floor(Math.random() * (30 - 10 + 1)) + 10
-}
 
 function Enemy(){
     this.name = getRandomElement(enemyTypes),
@@ -19,13 +11,19 @@ function Enemy(){
     this.item = getRandomElement(items)
 }
 
-var items = ['item1','item2','item3','item4','item5','item6'];
-
 function Player(name){
     this.name = name;
     this.hp = 100;
     this.inventory = [];
     this.enmiesKilled = 0;
+}
+
+function getRandomElement (arr){
+    var index = Math.floor(Math.random() * enemyTypes.length);
+    return arr[index]
+}
+function getRandomPlayerDamage(){
+    return Math.floor(Math.random() * (30 - 10 + 1)) + 10
 }
 
 function enemyChance(){
@@ -36,7 +34,7 @@ function enemyChance(){
     }
 }
 function escapeChance() {
-    return Math.floor(Math.random()*2 + 1);
+    return Math.floor(Math.random()*2 + 1); // between 1 and 2
 }
 
 function fight(enemy){
@@ -54,7 +52,7 @@ var name = rs.question('Welcome Adventurer, Please tell us your name so we know 
 var player = new Player(name); 
 
 
-// game logic       Game loop
+// Game loop
 while (true){
     var isWalking = rs.keyIn('Press \'W\' to continue down the path or \'P\' to print your stats: ', {limit: ["w","W","p","P"]});
     if (isWalking === "p" || isWalking === "P"){
@@ -69,8 +67,9 @@ while (true){
             if (fight === 'f' || fight === 'F'){
                  while (enemy.hp > 0 && player.hp > 0) {
                     var attack = rs.keyIn('Press \'A\' to attack! ', {limit: "aA"});
+                    // console.log(enemy.hp)
                     enemyStartHp = enemy.hp;
-                    enemy.hp -= getRandomPlayerDamage();
+                    enemy.hp -= getRandomPlayerDamage(); // change enemy.hp to reflect players random damage
                     console.log('You attacked ' + enemy.name + ' for ' + (enemyStartHp - enemy.hp));
                     if (enemy.hp > 0) {
                         player.hp += -enemy.damage;
@@ -79,7 +78,7 @@ while (true){
                         if ((player.hp += enemy.hpReward) > 100){
                             player.hp = 100;
                         }
-                        // player.hp += enemy.hpReward
+                        player.hp += enemy.hpReward
                         player.inventory.push(enemy.item);
                         console.log('+' + enemy.hpReward);
                         console.log('You killed a(n) ' + enemy.name + '\nYour kill count is now ' + player.enmiesKilled +'\n And you aquired ' + enemy.item);
@@ -91,8 +90,8 @@ while (true){
                     console.log('Phew! You got away unscathed!')
                 } else {
                     player.hp += -enemy.damage;
-                    console.log('-' + enemy.damage + name.player + ': ' + player.hp)
                     console.log(enemy.name + ' managed to attack you before you could get away')
+                    console.log(player.name + ' HP: ' + player.hp)
                 }
             }
         } else {

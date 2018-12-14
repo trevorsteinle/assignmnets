@@ -1,20 +1,5 @@
 const rs = require('readline-sync');
 
-// var enemies = [
-//     {name: 'enemy1',
-//     health: '100',
-//     damage: enemyDamage(),
-//     hpBonus: '40'},
-//     {name: 'enemy2',
-//     health: '80',
-//     damage: enemyDamage(),
-//     hpBonus: '30'},
-//     {name: 'enemy3',
-//     health: '60',
-//     damage: enemyDamage(),
-//     hpBonus: '20'}
-// ]
-
 var enemyTypes = ["number1","number2","number3","number4","number5","number6"];
 var items = ["item1","item2","item3","item4","item5","item6",];
 
@@ -34,10 +19,6 @@ function Enemy(){
     this.item = getRandomElement(items)
 }
 
-// console.log(enemies);
-// var asdf = enemies[Math.floor(Math.random() * enemies.length)];
-// console.log(asdf)
-
 var items = ['item1','item2','item3','item4','item5','item6'];
 
 function Player(name){
@@ -48,70 +29,45 @@ function Player(name){
 }
 
 function enemyChance(){
-    var chance = Math.floor(Math.random() * 5);
-    // console.log(chance);
+    var chance = Math.floor(Math.random() * 5); // 1 in 5 chance
     if (chance == 1) {
         var enemy = enemies[Math.floor(Math.random() * enemies.length)];
-        // console.log(asdf)
-        // return enemies[Math.floor(Math.random() * enemies.length)];
         return enemy;
     }
 }
-// enemyChance();
-
-
-function enemyDamage() {
-    return Math.floor(Math.random() * (30 - 10 + 1)) + 10;
-}
-
 function escapeChance() {
     return Math.floor(Math.random()*2 + 1);
-}
-// escapeChance(player, 2, enemyChance)
-
-function dropChance(){
-    return items[Math.floor(Math.random() * items.length)];
 }
 
 function fight(enemy){
     enemy = enemyChance();
     console.log(enemy)
 }
-// fight();
-// Functional/Business logic
 
-// var name = rs.question('Welcome Adventurer, Please tell us your name so we know what to engrave on your tombstone: ');
-// var player = new Player(name); //player does not exist yet
-
-// var start = rs.keyIn('Press \'w\' to continue: ', {limit: "w"});
-
-// //promt user for name and info
-
-// while(true) {
-//     // var isWalking = rs.keyIn('Press \'w\' to walk to continue: ', {limit: "w"});
-//     escapeChance()
-// }
-
-// var start = rs.keyIn('Press \'w\' to continue: ', {limit: "w"});
+function printStats (){
+    console.log('     Name: ' + player.name + '\n       HP: ' + player.hp + '\nInventory: ' + player.inventory + '\n    Kills: ' + player.enmiesKilled)
+}
 
 var name = rs.question('Welcome Adventurer, Please tell us your name so we know what to engrave on your tombstone: ');
-var player = new Player(name); //player does not exist yet
+
+//player does not exist yet
+var player = new Player(name); 
 
 
 // game logic       Game loop
 while (true){
-    var isWalking = rs.question('would you like to continue on your journey?\n');
-    if (isWalking){
+    var isWalking = rs.keyIn('Press \'W\' to continue down the path or \'P\' to print your stats: ', {limit: ["w","W","p","P"]});
+    if (isWalking === "p" || isWalking === "P"){
+        printStats()
+    } else {
         var encounterEnemy = Math.random() < .3333333;
         if (encounterEnemy) {
             //generate a random enemy
             var enemy = new Enemy();
             console.log('you encountered a/n ' + enemy.name + '!')
-            var fight = rs.keyInYN('Would you like to fight? Y/N')
-            if (fight){
+            var fight = rs.keyIn('Would you like to [F]ight or [R]un?', {limit: ['f','F','r','R']})
+            if (fight === 'f' || fight === 'F'){
                  while (enemy.hp > 0 && player.hp > 0) {
-                    // console.log(player);
-                    // console.log(enemy);
                     var attack = rs.keyIn('Press \'A\' to attack! ', {limit: "aA"});
                     enemyStartHp = enemy.hp;
                     enemy.hp -= getRandomPlayerDamage();
@@ -128,31 +84,25 @@ while (true){
                         console.log('+' + enemy.hpReward);
                         console.log('You killed a(n) ' + enemy.name + '\nYour kill count is now ' + player.enmiesKilled +'\n And you aquired ' + enemy.item);
                     }
-                    
-                    // enemy.hp -= getRandomPlayerDamage();
-                    // player.hp += -enemy.damage;
-                    // console.log('enemy hp ' + enemy.hp)
-                    console.log(player)
-                // } {
-                //     // return false 
-                // }
-            // }else {
-                
-            //     //potentially damage the player and escape
-
                 }
+            //potentially damage the player and escape
             } else {
                 if (escapeChance() === 1){
-                    console.log('')
+                    console.log('Phew! You got away unscathed!')
+                } else {
+                    player.hp += -enemy.damage;
+                    console.log('-' + enemy.damage + name.player + ': ' + player.hp)
+                    console.log(enemy.name + ' managed to attack you before you could get away')
                 }
             }
-    } else {
-        console.log('So far the path is clear')
-    }
-}
+        } else {
+            console.log('So far the path is clear')
+        }
+    }   
 
 // check player hp to give correct end game message
 if (player.hp <= 0) {
     console.log('You dead')
+    printStats()
     return false
 }}

@@ -19,7 +19,7 @@ function Player(name){
 }
 
 function getRandomElement (arr){
-    var index = Math.floor(Math.random() * enemyTypes.length);
+    var index = Math.floor(Math.random() * arr.length);
     return arr[index]
 }
 function getRandomPlayerDamage(){
@@ -83,7 +83,7 @@ while (true){
                         }
                         player.inventory.push(enemy.item);
                         console.log('+' + enemy.hpReward + ' HP');
-                        console.log('You killed ' + enemy.name + '!\nYour kill count is now ' + player.enemiesKilled +'\nAnd you aquired ' + enemy.item);
+                        console.log('You killed ' + enemy.name + '!\nYour kill count is now ' + player.enemiesKilled +'\nAnd you aquired ' + enemy.item + '\nYour current have '+ player.hp + ' HP');
                     }
                 }
             //potentially damage the player and escape

@@ -7,10 +7,14 @@ function caeserCipher (input, shift) {
     charCode = 0;
 
     for (var i = 0; i < input.length; i++) {
-        if (input[i] === " "){
-            phrase += ' ';
+        charcode = (input[i].charCodeAt());
+        if (charcode < 97|| charcode > 122){
+            phrase += input[i];
         } else {
-            charcode = (input[i].charCodeAt()) + shift;
+            charcode += shift;
+            if (charcode > 122) {
+                charcode -= 26; 
+            }
             phrase += String.fromCharCode(charcode)
         }
     }

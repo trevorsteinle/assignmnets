@@ -1,0 +1,13 @@
+import React from 'react';
+
+
+const Boxes = ({title, subtitle, info}) => (
+    <div>
+
+        <h3>Title: {title}</h3>
+        <p>Subtitle: {subtitle}</p>
+        <p>Information: {info}</p>
+    </div>
+)
+
+export default Boxes

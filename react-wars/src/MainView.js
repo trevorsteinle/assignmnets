@@ -1,25 +1,36 @@
 import React from 'react'
 import { Link, Switch, Route } from 'react-router-dom'
 import Home from './Home';
-import CharacterList from './CharacterList';
+// import CharacterList from './CharacterList';
+import CharacterDetail from './CharacterDetail';
 // import Nav from './Nav';
 
 function MainView({ characters }) {
+    const styles = {
+        display: 'block'
+    }
     const links = characters.map((character, i) => (
-        <Link key={i} to={`/characters/${i}`}>{character.name}</Link>
+        <Link style ={styles} key={i} to={{pathname: `/characters/${i}`, state: character}}>{character.name}</Link>
     ))
+
+
     return (
+        
         <div>
             <nav>
-                <Link to='./'>Home</Link>
+                
+                
+                <Link style ={styles} to='../'>Home</Link>
                 {links}
+                
+                
             </nav>
             <Switch>
                 <Route exact path="/" component={Home} />
                 <Route
-                    path="/characters/:index"
-                    render={({ match: { params: { index } } }) => (
-                        <CharacterList characters={characters} />
+                    path="/characters/:id"
+                    render={({ location: {state}}) => (
+                        <CharacterDetail {...state}/>
                     )} />
                 {/* <Route  */}
             </Switch>

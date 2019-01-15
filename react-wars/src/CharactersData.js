@@ -3,14 +3,13 @@ import Axios from 'axios';
 
 export default class CharactersData extends Component {
     constructor() {
-        super()
+        super();
         this.state = {
             characters: [],
             loading: true,
             errMsg: null
         }
     }
-
     getCharacters(url) {
         return Axios.get(url)
             .then(response => this.setState({

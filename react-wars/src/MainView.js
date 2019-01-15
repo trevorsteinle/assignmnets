@@ -1,9 +1,7 @@
 import React from 'react'
 import { Link, Switch, Route } from 'react-router-dom'
 import Home from './Home';
-// import CharacterList from './CharacterList';
 import CharacterDetail from './CharacterDetail';
-// import Nav from './Nav';
 
 function MainView({ characters }) {
     const styles = {
@@ -32,7 +30,6 @@ function MainView({ characters }) {
                     render={({ location: {state}}) => (
                         <CharacterDetail {...state}/>
                     )} />
-                {/* <Route  */}
             </Switch>
         </div>
     )

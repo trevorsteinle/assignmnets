@@ -1,6 +1,6 @@
 import React from 'react'
 
-function MissionUpcomingDetail({ details, flight_number, mission_name, launch_date_unix, links, rocket, launch_site }) {
+function MissionUpcomingDetail({ details, flight_number, mission_name, launch_date_utc, links, rocket, launch_site }) {
     // const styles={
     //     display: 'grid',
     //     gridTemplateColumns: 'repeat(3,1fr)'
@@ -23,12 +23,13 @@ function MissionUpcomingDetail({ details, flight_number, mission_name, launch_da
         <div style={styles}>
             <div>
                 {/* <img style={{display: 'block'}} src={links.mission_patch_small} alt={links.mission_patch_small}/> */}
-                <h5>{mission_name}</h5>
+                <h3>{mission_name}</h3>
                 {/* <p>{rocket.first_stage.cores[0].core_serial}</p> */}
                 <p >{details}</p>
                 {/* <p>{JSON.stringify(launch_site)}</p> */}
                 {/* <p>{flight_number}</p> */}
-                <p style={{ display: 'block' }}>{launch_date_unix}</p>
+                <p>Launch Date UTC: {launch_date_utc}</p>
+                <p>Flight Number: {flight_number}</p>
             </div>
         </div>
     )

@@ -1,11 +1,15 @@
 import React from 'react'
-import MissionDetail from './MissionDetail'
-import './assets/styles/AllMissionsList.css'
+// import MissionDetail from './MissionDetail'
+import './assets/styles/MissionUpcoming.css'
+import MissionUpcomingDetail from './MissionUpcomingDetail';
 
-function AllMissionsList({ allMissionDetails }) {
-    const missionComponents = allMissionDetails.map((mission, i) => (
-        <MissionDetail key={i}{...mission} />
-    ))
+function AllMissionsList({ upcomingMissionDetails }) {
+    // const missionComponents = upcomingMissionDetails.map((mission, i) => (
+    //     <MissionDetail key={i}{...mission} />
+    // ))
+    console.log(upcomingMissionDetails)
+
+    const missionComponents = <MissionUpcomingDetail key='123'{...upcomingMissionDetails} />
 
     // const styles={
     //     display: 'flex',
@@ -24,7 +28,7 @@ function AllMissionsList({ allMissionDetails }) {
     // }
 
     return (
-        <div className='allMissionsList'>
+        <div className='MissionUpcoming'>
             {missionComponents}
         </div>
     )

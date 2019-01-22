@@ -1,19 +1,20 @@
 import React, { Component } from 'react';
 import Axios from 'axios';
-import AllMissionsList from './AllMissionsList';
+// import MissionUpcomingList from './MissionUpcomingList';
+import AboutDataList from './AboutDataList';
 
-export default class AllMissionsData extends Component {
+export default class AboutData extends Component {
     constructor() {
         super();
         this.state = {
-            allMissionDetails: []
+            aboutData: []
         }
     }
 
     getDetails(url) {
         Axios.get(url)
             .then(response => this.setState({
-                allMissionDetails: response.data,
+                aboutData: response.data,
                 // loading: false,
                 // errMsg: null
             }))
@@ -24,14 +25,13 @@ export default class AllMissionsData extends Component {
     }
 
     componentDidMount() {
-        this.getDetails('https://api.spacexdata.com/v3/launches/past')
+        this.getDetails('https://api.spacexdata.com/v3/info')
     }
 
     render() {
 
         return (
-            <AllMissionsList allMissionDetails={this.state.allMissionDetails} />
+            <AboutDataList aboutData={this.state.aboutData} />
         )
     }
 }
-

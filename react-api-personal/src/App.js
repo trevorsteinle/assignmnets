@@ -13,12 +13,6 @@ const App = () => {
   return (
     <div>
       <Header />
-      {/* <AllMissionsData>
-        {({ allMissionDetails }) => (
-
-          )}
-      </AllMissionsData> */}
-
       <DataProvider >
         {({ details, loading, errMsg}) => (
           <Loading loading={loading}>

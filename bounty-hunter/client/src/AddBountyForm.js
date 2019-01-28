@@ -8,7 +8,7 @@ function AddBountyForm({ addBounty }) {
             inputs={{
                 fName: '',
                 lName: '',
-                //living: '',
+                living: '',
                 bounty: '',
                 type: ''
             }}>

@@ -3,10 +3,10 @@ import axios from 'axios';
 
 // const bountyUrl = '/bounties';
 
-const {Consumer, Provider} = createContext();
+const { Consumer, Provider } = createContext();
 
 export default class DataProvider extends Component {
-    constructor(){
+    constructor() {
         super();
         this.state = {
             bounties: [],
@@ -14,39 +14,64 @@ export default class DataProvider extends Component {
             errMsg: null
         }
         this.addBounty = this.addBounty.bind(this);
+        this.editBounty = this.editBounty.bind(this);
+        this.removeBounty = this.removeBounty.bind(this);
     }
-    getBounties(url){
+    getBounties(url) {
         return axios.get(url)
-        .then(response => this.setState ({
-            bounties: response.data,
-            loading: false,
-            errMsg: null
-        }))
-        .catch(err => this.setState({
-            errMsg: `Your Data Is Unavailable`,
-            loading: false
-        }))
+            .then(response => this.setState({
+                bounties: response.data,
+                loading: false,
+                errMsg: null
+            }))
+            .catch(err => this.setState({
+                errMsg: `Your Data Is Unavailable`,
+                loading: false
+            }))
     }
-        // bind
+    // bind
 
-    addBounty(bounty){
+    addBounty(bounty) {
         return axios.post('/bounties/', bounty)
             .then(response => this.setState(ps => ({
                 bounties: [...ps.bounties, response.data]
             })))
     }
 
-    editBounty(id, updatedBounty){
+    editBounty(id, updatedBounty) {
         // alert(JSON.stringify({id, updatedBounty}))
         // axios.put(url + id, updateBounty)
         // .then(response => //)
-        this.setState(ps => ({
-            bounties: ps.bounties.map(bounty => bounty._id === id ? {...bounty, ...updatedBounty} : bounty)
+        return axios.put(`/bounties/${id}`, updatedBounty)
+            .then(response => this.setState(ps => ({
+                bounties: ps.bounties.map(bounty => bounty._id === id ? response.data : bounty)
+            })))
+    }
+    removeBounty(id) {
+        // return axios.delete(`/bounties/${id}`, bounty)
+        //     .then(response => this.setState(ps => ({
+        //         bounties: [...ps.bounties, response.data]
+        //     })))
+            axios.delete(`/bounties/${id}`)
+        .then(() => {
+            return axios.get('/bounties/')
+        })
+        .then(response => this.setState({
+            bounties: response.data
         }))
     }
+    // Database.prototype.findByIdAndRemove = function (id) {
+    //     const foundBounty = this.bounties.find(bounty => {
+    //         return bounty._id === id;
+    //     })
+    //     if(foundBounty === undefined) return;
+    //     const index = this.bounties.indexOf(foundBounty)
+    //     this.bounties.splice(index, 1)
+    // }
 
 
-    componentDidMount(){
+
+    componentDidMount() {
         this.getBounties('/bounties/')
     }
 
@@ -58,11 +83,12 @@ export default class DataProvider extends Component {
         const value = {
             ...this.state,
             addBounty: this.addBounty,
-            // editBounty: this.editBounty
+            editBounty: this.editBounty,
+            removeBounty: this.removeBounty
         }
         return (
             <Provider value={value}>
-            {this.props.children}
+                {this.props.children}
             </Provider>
         )
     }

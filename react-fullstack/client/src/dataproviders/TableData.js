@@ -20,11 +20,16 @@ export default class TableData extends Component {
     componentDidMount() {
         this.getStats('http://virosa.ethosdistro.com/?json=yes')
     }
+    
 
     render() {
+        
         const value = {
             ...this.state
         }
+        const rig = value.farm;
+        // console.log(JSON.stringify(rig.rigs))
+        // console.log(Object.entries(props.value))
         return (
             // this.props.children(this.state)
             /*{ <div>

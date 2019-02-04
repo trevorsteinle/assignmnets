@@ -6,14 +6,16 @@ import AlgoDetail from './AlgoDetail';
 import AlgoLinks from './links/AlgoLinks';
 import TableDetail from './TableDetail';
 import TableData from './dataproviders/TableData';
+import TableList from './TableList'
 // import AlgorithmData from './dataproviders/AlgorithmData';
 
 // function MainView({algorithms}) {
-function MainView({ algorithms }) {
+function MainView({ algorithms, getAlgorithms}) {
     return (
         <div>
+            <TableList />
             <TableDetail />
-            <button>Algorithm</button>
+            <button onClick={getAlgorithms}>Algorithm</button>
             <AlgoLinks />
             <Route path='/algorithm/:id' component={(routeProps) => {
                 const { id } = routeProps.match.params;

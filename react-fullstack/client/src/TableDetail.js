@@ -21,7 +21,7 @@ function TableDetail(value) {
     //   )
     return (
         <TableData value={value}>
-            
+            {/* {value} */}
         </TableData>
     )
 }

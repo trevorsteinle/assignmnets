@@ -9,6 +9,7 @@ export default class AlgorithmData extends Component {
         this.state = {
             algorithms: []
         }
+        this.getAlgorithms = this.getAlgorithms.bind(this)
     }
     getAlgorithms(url) {
         return axios.get(url)
@@ -25,7 +26,8 @@ export default class AlgorithmData extends Component {
 
     render() {
         const value = {
-            ...this.state
+            ...this.state,
+            getAlgorithms: this.getAlgorithms
         }
         return (
             // this.props.children(this.state)

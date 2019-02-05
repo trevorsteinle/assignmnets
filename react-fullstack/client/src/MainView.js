@@ -10,13 +10,14 @@ import TableList from './TableList'
 // import AlgorithmData from './dataproviders/AlgorithmData';
 
 // function MainView({algorithms}) {
-function MainView({ algorithms, getAlgorithms}) {
+function MainView({ algorithms, getAlgorithms }) {
     return (
         <div>
-            <TableList />
-            <TableDetail />
+            <TableData>
+                <TableList />
+            </TableData>
             <button onClick={getAlgorithms}>Algorithm</button>
-            <AlgoLinks />
+            {/* <AlgoLinks /> */}
             <Route path='/algorithm/:id' component={(routeProps) => {
                 const { id } = routeProps.match.params;
                 const findAlgorithm = algorithms.find(algo => {

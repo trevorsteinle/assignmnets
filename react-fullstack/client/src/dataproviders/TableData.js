@@ -11,7 +11,7 @@ export default class TableData extends Component {
     getStats(url) {
         return axios.get(url)
             .then(response => this.setState({
-                farm: response.data
+                farm: response.data.rigs
             }))
             .catch(err => this.setState({
                 errMsg: 'Your Data Is Unavailable'

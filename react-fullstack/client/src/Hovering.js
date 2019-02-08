@@ -41,16 +41,16 @@ export default class HoverExample extends Component {
                 >
                   Hover Me
                 </div>
-                {this.state.isHovering && <div>Hovering right meow!</div>}
+                {this.state.isHovering && <div>Now Hovering</div>}
               </div> }*/
         );
     }
 }
 
 export const withHovering = C => props => (
-    <div>
+    <Consumer>
         {hoverProps => <C {...hoverProps}{...props} />}
-    </div>
+    </Consumer>
 )
 
 

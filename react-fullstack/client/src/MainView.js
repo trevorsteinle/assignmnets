@@ -1,36 +1,45 @@
 import React from 'react';
 import { Route } from 'react-router-dom';
 
-import { withAlgorithmContext } from './dataproviders/AlgorithmData';
-import AlgoDetail from './AlgoDetail';
-import AlgoLinks from './links/AlgoLinks';
+import { withProfileContext } from './dataproviders/ProfileData';
+import { withToggler } from './Toggler'
+import ProfileList from './ProfileList';
+import ProfileLinks from './links/ProfileLinks';
 import TableDetail from './TableDetail';
 import TableData from './dataproviders/TableData';
 import TableList from './TableList'
+import AddProfileForm from './AddProfileForm';
 // import AlgorithmData from './dataproviders/AlgorithmData';
+import './css/MainView.css'
 
 // function MainView({algorithms}) {
-function MainView({ algorithms, getAlgorithms }) {
+function MainView({ profiles, getProfiles, toggle, on}) {
     return (
         <div>
             <TableData>
                 <TableList />
             </TableData>
-            <button onClick={getAlgorithms}>Algorithm</button>
-            {/* <AlgoLinks /> */}
-            <Route path='/algorithm/:id' component={(routeProps) => {
+            <button className='profileButton' onClick={toggle}>Show Profiles</button>
+            {on && <AddProfileForm />}
+            {on && <ProfileList {...profiles} />}
+
+
+            {/* <ProfileLinks /> */}
+            {/* <AddProfileForm /> */}
+
+            {/* <Route path='/profile/:id' component={(routeProps) => {
                 const { id } = routeProps.match.params;
-                const findAlgorithm = algorithms.find(algo => {
-                    return algo._id === id;
+                const findProfile = profiles.find(profile => {
+                    return profile._id === id;
                 })
                 return (
-                    <AlgoDetail {...findAlgorithm} />
+                    <ProfileList {...findProfile} />
                 )
-            }} />
-            {/* <AlgoDetail algorithms={algorithms}/> */}
+            }} /> */}
+            {/* <ProfileList profiles={profiles}/> */}
         </div>
     )
 }
 
-export default withAlgorithmContext(MainView)
+export default withProfileContext(withToggler(MainView))
 // export default MainView

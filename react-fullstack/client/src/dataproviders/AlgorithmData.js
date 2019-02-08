@@ -20,9 +20,9 @@ export default class AlgorithmData extends Component {
                 errMsg: 'Your Data Is Unavailable'
             }))
     }
-    componentDidMount() {
-        this.getAlgorithms('/api/algorithm/')
-    }
+    // componentDidMount() {
+    //     this.getAlgorithms('/api/algorithm/')
+    // }
 
     render() {
         const value = {

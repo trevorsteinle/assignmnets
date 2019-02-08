@@ -9,7 +9,7 @@ app.use(express.json());
 
 app.use('/api/algorithm', require('./routes/algorithm.model'));
 app.use('/api/coin', require('./routes/coin.model'));
-app.use('/api/pool', require('./routes/pool.model'));
+app.use('/api/profile', require('./routes/profile.model'));
 
 app.use((err, req, res, next) => {
     res.send({ errMsg: err.message })

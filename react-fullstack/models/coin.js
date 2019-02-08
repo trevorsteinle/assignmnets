@@ -7,7 +7,7 @@ const coinSchema = new mongoose.Schema({
         type: String,
         required: true
     },
-    algorithms: [{
+    pool: [{
         type: mongoose.Schema.Types.ObjectId,
         ref: "Algorithm",
         required: true

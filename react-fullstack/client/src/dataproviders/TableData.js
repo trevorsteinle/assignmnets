@@ -18,7 +18,7 @@ export default class TableData extends Component {
             }))
     }
     componentDidMount() {
-        this.getStats('http://virosa.ethosdistro.com/?json=yes')
+        this.getStats('http://pariah.ethosdistro.com/?json=yes')
     }
     
 

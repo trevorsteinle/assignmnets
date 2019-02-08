@@ -1,33 +1,33 @@
 const express = require('express');
-const poolRouter = express.Router();
-const Pool = require('../models/pool');
+const profileRouter = express.Router();
+const Profile = require('../models/profile');
 
-poolRouter.route('/')
+profileRouter.route('/')
     .get((req, res, next) => {
-        Pool.find(req.query)
-            .populate('algorithms')
-            .then(poolCollection => res.status(200).send(poolCollection))
+        Profile.find(req.query)
+            // .populate('profile')
+            .then(profileCollection => res.status(200).send(profileCollection))
             .catch(err => {
                 res.status(500);
                 next(err)
             })
     })
     .post((req, res, next) => {
-        const poolData = req.body;
-        const poolDoc = new Pool(poolData);
-        poolDoc.save()
-            .then(savedPoolDoc => res.status(201).send(savedPoolDoc))
+        const profileData = req.body;
+        const profileDoc = new Profile(profileData);
+        profileDoc.save()
+            .then(savedProfileDoc => res.status(201).send(savedProfileDoc))
             .catch(err => {
                 res.status(500);
                 next(err)
             })
     })
 
-poolRouter.route('/:id')
+profileRouter.route('/:id')
     .get((req, res, next) => {
         const id = req.params.id;
-        Pool.findById(id)
-            .then(foundPool => res.status(200).send(foundPool))
+        Profile.findById(id)
+            .then(foundProfile => res.status(200).send(foundProfile))
             .catch(err => {
                 res.status(500);
                 next(err);
@@ -36,7 +36,7 @@ poolRouter.route('/:id')
 
     .delete((req, res, next) => {
         const id = req.params.id;
-        Pool.findByIdAndDelete(id)
+        Profile.findByIdAndDelete(id)
             .then(res.status(204).send())
             .catch(err => {
                 res.status(500);
@@ -47,13 +47,13 @@ poolRouter.route('/:id')
 
     .put((req,res,next) => {
         const id = req.params.id;
-        const updatedPool = req.body;
-        Pool.findByIdAndUpdate(id, updatedPool, {new: true})
-            .then(updatedPool => res.status(200).send(updatedPool))
+        const updatedProfile = req.body;
+        Profile.findByIdAndUpdate(id, updatedProfile, {new: true})
+            .then(updatedProfile => res.status(200).send(updatedProfile))
             .catch(err => {
                 res.status(500);
                 next(err)
             })
     })
 
-    module.exports = poolRouter
+    module.exports = profileRouter

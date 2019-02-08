@@ -10,7 +10,7 @@ export default class CoinData extends Component {
             coins: []
         }
     }
-    getAlgorithms(url) {
+    getCoins(url) {
         return axios.get(url)
             .then(response => this.setState({
                 coins: response.data
@@ -19,8 +19,16 @@ export default class CoinData extends Component {
                 errMsg: 'Your Data Is Unavailable'
             }))
     }
+    addBounty(coin) {
+        return axios.post('/coin/', coin)
+            .then(response => this.setState(ps => ({
+                coins: [...ps.bounties, response.data]
+            })))
+    }
+
+
     componentDidMount() {
-        this.getAlgorithms('/api/coin/')
+        this.getCoins('/api/coin/')
     }
 
     render() {

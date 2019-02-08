@@ -1,13 +1,56 @@
-.tHead {
-    background-color: green
-    /* border-bottom-color: red;
-    border-collapse: collapse;
-    border-left-color: red;
-    border-right-color: red;
-    border-top-color:   red;
-    box-sizing: border-box; */
-    /* display: table-row; */
+body {
+    background-image:url('http://ethosdistro.com/background.png')
 }
 
-.version {
+table {
+    border: 1px solid black;
+    border-collapse: collapse;
+    width: 100%;
+    max-width: 100%;
+    margin-bottom: 20px
+}
+td, th {
+    border: 1px solid black;
+    text-align: center
+
+}
+thead tr{
+    background-color: #4b4b4b36
+}
+tbody tr:nth-child(even) {
+    background-color: #4b4b4b36
+}
+
+
+.l {
+    text-align: left
+}
+
+.r {
+    text-align: right
+}
+
+.hid span {
+    display: none
+}
+.hid span,.hidd div {
+    color: #000;
+    text-decoration: none;
+    padding-left: 5px;
+    padding-right: 5px;
+}
+
+.hid:hover span {
+    display: block;
+    border: 1px sold #ccc;
+    border-radius: 10px;
+
+    /* position: absolute;
+    background-color: #fff;
+    margin-top: 10px; */
+}
+.hid:hover span,.hid:hover div {
+    position: absolute;
+    background-color: #fff;
+    margin-top: 10px;
 }

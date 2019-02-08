@@ -1,5 +1,5 @@
 import React from 'react'
-import styles from './css/Tablelist.css'
+import './css/Tablelist.css'
 import TableDetail from './TableDetail';
 import { withTableContext } from './dataproviders/TableData';
 import { withHovering } from './Hovering';
@@ -14,34 +14,29 @@ function TableList(props) {
     }
     return (
         <table>
-            <thead className={styles.tHead}>
-                <tr >
-                    <th className={styles.version}>V</th>
-                    <th className={styles.driver}>D</th>
-                    <th
-                        /* onMouseEnter={handleMouseHover}
-                        onMouseLeave={handleMouseHover} */
-                    >M
-                  </th>
-                  {/* {this.state.isHovering && <span>Hovering right meow!</span>} */}
-                    <th>G</th>
-                    <th>name</th>
-                    <th>loc</th>
-                    <th>IP</th>
-                    <th>b</th>
-                    <th>m</th>
-                    <th>rx</th>
-                    <th>tx</th>
-                    <th>L</th>
-                    <th>C</th>
-                    <th>H</th>
-                    <th>hashes</th>
-                    <th>temps</th>
-                    <th>rw</th>
-                    <th>watts</th>
-                    <th>fans</th>
-                    <th>core</th>
-                    <th>mem</th>
+            <thead>
+                <tr>
+                    <th className="l"><a className="hid" href="#">V<span>ethos version</span></a></th>
+                    <th className="l"><a className="hid" href="#">D<span>rig gpu driver</span></a></th>
+                    <th className="l"><a className="hid" href="#">M<span>current running miner on rig</span></a></th>
+                    <th className="l"><a className="hid" href="#">G<span>live rig gpu's / detected rig gpu's</span></a></th>
+                    <th className="l"><a className="hid" href="#">name<span>rig hostname</span></a></th>
+                    <th className="l"><a className="hid" href="#">loc<span>location and/or name of rig</span></a></th>
+                    <th className="r"><a className="hid" href="#">ip<span>ip address of rig</span></a></th>
+                    <th className="r"><a className="hid" href="#">b<span>elapsed time since rig booted (rig uptime)</span></a></th>
+                    <th className="r"><a className="hid" href="#">m<span>elapsed time since miner instance started (miner uptime)</span></a></th>
+                    <th className="r"><a className="hid" href="#">rx<span>10 minute average of kbps received by rig (if high value, may indicate your rig is compromised)</span></a></th>
+                    <th className="r"><a className="hid" href="#">tx<span>10 minute average of kbps sent by rig (if high value, may indicate your rig is compromised</span></a></th>
+                    <th className="r"><a className="hid" href="#">L<span>5 minute average cpu load</span></a></th>
+                    <th className="r"><a className="hid" href="#">C<span>cpu temp in celcius</span></a></th>
+                    <th className="r"><a className="hid" href="#">H<span>total rig hash</span></a></th>
+                    <th className="r"><a className="hid" href="#">hashes<span>hashrates per gpu</span></a></th>
+                    <th className="r"><a className="hid" href="#">temps<span>temperature per gpu in celcius</span></a></th>
+                    <th className="r"><a className="hid" href="#">rw<span>watts per rig</span></a></th>
+                    <th className="r"><a className="hid" href="#">watts<span>estimated watts per gpu</span></a></th>
+                    <th className="r"><a className="hid" href="#">fans<span>fan speed in percent</span></a></th>
+                    <th className="r"><a className="hid" href="#">core<span>gpu coreclock in Mhz</span></a></th>
+                    <th className="r"><a className="hid" href="#">mem<span>gpu memory in Mhz</span></a></th>
                 </tr>
             </thead>
             <tbody>

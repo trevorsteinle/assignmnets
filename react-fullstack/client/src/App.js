@@ -1,14 +1,14 @@
 import React from 'react';
 // import WebSocketDemo from './WebSocketDemo';
 import MainView from './MainView';
-import AlgorithmData from './dataproviders/AlgorithmData';
+import ProfileData from './dataproviders/ProfileData';
 
 const App = () => {
     return (
       <div>
-      <AlgorithmData>
+      <ProfileData>
       <MainView />
-      </AlgorithmData>
+      </ProfileData>
       </div>
     )
   }

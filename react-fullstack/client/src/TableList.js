@@ -1,19 +1,33 @@
 import React from 'react'
 import styles from './css/Tablelist.css'
+import TableDetail from './TableDetail';
+import { withTableContext } from './dataproviders/TableData';
+import { withHovering } from './Hovering';
 
-function TableList() {
+function TableList(props) {
+    const rigs = []
+    if (props.farm) {
+        for (let i in props.farm) {
+            // console.log(props.farm[i])
+            rigs.push(<TableDetail key={i}{...props.farm[i]} hostname={i} />)
+        }
+    }
     return (
         <table>
             <thead className={styles.tHead}>
                 <tr >
                     <th className={styles.version}>V</th>
                     <th className={styles.driver}>D</th>
-                    <th>M</th>
+                    <th
+                        /* onMouseEnter={handleMouseHover}
+                        onMouseLeave={handleMouseHover} */
+                    >M
+                  </th>
+                  {/* {this.state.isHovering && <span>Hovering right meow!</span>} */}
                     <th>G</th>
                     <th>name</th>
                     <th>loc</th>
                     <th>IP</th>
-                    <th>p</th>
                     <th>b</th>
                     <th>m</th>
                     <th>rx</th>
@@ -31,22 +45,10 @@ function TableList() {
                 </tr>
             </thead>
             <tbody>
-                <tr>
-                    <td>a</td>
-                    <td>b</td>
-                    <td>c</td>
-                    <td>d</td>
-                    <td>e</td>
-                    <td>f</td>
-                    <td>g</td>
-                </tr>
+                {rigs}
             </tbody>
-
-
         </table>
-
-
     )
 }
 
-export default TableList
+export default withTableContext(TableList)

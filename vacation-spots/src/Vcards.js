@@ -1,6 +1,6 @@
 import React from 'react';
 
-
+// I love this helper function
 const dollaBillz = (prices) => {
     if (prices < 500) {
       return "$"
@@ -10,7 +10,7 @@ const dollaBillz = (prices) => {
       return "$$$"
     }
 }
-
+// I love this one too
 const timeOfYearBackground = (timeOfYear) => {
     if (timeOfYear === 'Spring') {
         return `#F4512C`

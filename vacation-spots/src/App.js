@@ -37,3 +37,14 @@ const App = () => {
 }
 
 export default App;
+
+// This structure is confusing. 
+
+// You map through ""
+ 
+// This structure in confusing. 
+
+// You map through vacationSpotComponents (an array), which is great, but probably 
+// should be done in a different component the app. You have that map render several
+// “cards” but you don’t want to call it cards. You want to call each one “card” 
+// so that we know it’s an object, and not an array. 
